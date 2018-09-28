@@ -1,14 +1,13 @@
-const JWTStrategy = require('passport-jwt').Strategy;
-const ExtractJWT = require('passport-jwt').ExtractJWT;
-const mongoose = require('mongoose');
-const User = mongoose.model('users');
-
-const opts = {};
-opts.jwtFromRequest = ExtractJWT.fromAuthHeaderAsBearerToken();
+var JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt;
+var opts = {}
+opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = 'secret';
 
+const User = require('./models/User');
+
 module.exports = passport => {
-    passport.use(new JWTStrategy(opts, (jwt_payload, done) => {
+    passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
         User.findById(jwt_payload.id)
             .then(user => {
                 if(user) {
@@ -19,5 +18,3 @@ module.exports = passport => {
             .catch(err => console.log(err));
     }));
 }
-
-
