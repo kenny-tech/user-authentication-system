@@ -11,6 +11,6 @@ module.exports = (app) => {
     app.post('/signup', Authentication.signup);
 
     app.get('/', requireAuth, (req, res, next) => {
-        res.send(['water', 'phone', 'paper']);
+        res.send('Welcome');
     });
 };
