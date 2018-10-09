@@ -6,7 +6,7 @@ import {
 
 export const reducer = (state = {}, action) => {
 
-    Switch (action.type) {
+    switch (action.type) {
         case AUTH_USER:
             return { ...state, error: '', authenticated: true }
         case UNAUTH_USER:
@@ -14,6 +14,6 @@ export const reducer = (state = {}, action) => {
         case AUTH_ERROR:
             return { ...state, error: action.payload }
         default:
-            return state; 
+            return state;
     }
-}
+};
