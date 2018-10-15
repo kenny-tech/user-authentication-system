@@ -14,7 +14,7 @@ class Signup extends Component {
           <label>{label}</label>
           <div>
             <input {...input} placeholder={label} type={type} className={className}/>
-            {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+            {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
           </div>
         </div>
     );
@@ -80,7 +80,7 @@ const validate = values => {
     }
 
     if (!values.passwordConfirmation) {
-        errors.password = 'Please enter a password confirmation';
+        errors.passwordConfirmation = 'Please enter a password confirmation';
     }
 
     if (values.password !== values.passwordConfirmation) {

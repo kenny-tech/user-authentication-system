@@ -14,7 +14,7 @@ class Signin extends Component {
           <label>{label}</label>
           <div>
             <input {...input} placeholder={label} type={type} className={className}/>
-            {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+            {touched && ((error && <span className="text-danger">{error}</span>) || (warning && <span>{warning}</span>))}
           </div>
         </div>
     );

@@ -32,7 +32,7 @@ export const signinUser = ({ email, password }) => {
     };
 };
 
-export const signupUser = ( { email, password }) => {
+export const signupUser = ({ email, password }) => {
     return (dispatch) => {
         // submit email/password to the server
         axios.post(`${ROOT_URL}/signup`, { email, password })
@@ -42,7 +42,7 @@ export const signupUser = ( { email, password }) => {
                 History.push('/feature');
             })
             .catch(err => {
-                dispatch(authError(err.response.data.err))
+                dispatch(authError(err.response.error));
             });
     };
 };
