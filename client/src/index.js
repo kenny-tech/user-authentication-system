@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
-import { BrowserRouter, Router, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import History from './history';
 import Routes from './routes';
 import { AUTH_USER } from './actions/types';
@@ -29,7 +29,7 @@ const store = createStore(
 //
 
 const token = localStorage.getItem('token');
-// if we have a token, consider the user to be signed in
+// if we have a token, consider the  user to be signed in
 if (token) {
     // update application state
     store.dispatch({ type: AUTH_USER });
@@ -38,11 +38,11 @@ if (token) {
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter>
-            <Router history={History}>
+            <Route history={History}>
                 <Switch>
                     <Routes />
                 </Switch>
-            </Router>
+            </Route>
         </BrowserRouter>
     </Provider>, document.getElementById('root'));
 registerServiceWorker();

@@ -9,11 +9,11 @@ class Signup extends Component {
         this.props.signupUser(formProps);
     }
 
-    renderField = ({ input, label, type, meta: { touched, error, warning } }) => (
+    renderField = ({ input, label, type, className,  meta: { touched, error, warning } }) => (
         <div>
           <label>{label}</label>
           <div>
-            <input {...input} placeholder={label} type={type}/>
+            <input {...input} placeholder={label} type={type} className={className}/>
             {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
           </div>
         </div>
@@ -34,8 +34,10 @@ class Signup extends Component {
 
         return (
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                <h3>Sign Up</h3>
                 <fieldset className="form-group">
                     <Field 
+                        className="form-control"
                         name="email" 
                         type="email" 
                         component={this.renderField} 
@@ -43,13 +45,15 @@ class Signup extends Component {
                 </fieldset>
                 <fieldset className="form-group">
                     <Field 
+                        className="form-control"
                         name="password" 
                         type="password" 
                         component={this.renderField} 
                         label="Password"/>
                 </fieldset>
                 <fieldset className="form-group">
-                    <Field 
+                    <Field
+                        className="form-control" 
                         name="passwordConfirmation" 
                         type="password" 
                         component={this.renderField} 
@@ -72,7 +76,7 @@ const validate = values => {
     }
 
     if (!values.password) {
-        errors.email = 'Please enter a password';
+        errors.password = 'Please enter a password';
     }
 
     if (!values.passwordConfirmation) {

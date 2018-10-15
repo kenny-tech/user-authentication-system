@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import History from '../History';
+import History from '../history';
 import {
     AUTH_USER,
     UNAUTH_USER,
