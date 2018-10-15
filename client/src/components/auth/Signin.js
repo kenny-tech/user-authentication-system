@@ -5,12 +5,22 @@ import { connect } from 'react-redux';
 
 class Signin extends Component {
 
-    handleFormSubmit({ email, password }) {
-        this.props.signinUser({ email, password })
+    handleFormSubmit(formProps) {
+        this.props.signinUser(formProps);
     }
 
+    renderField = ({ input, label, type, className,  meta: { touched, error, warning } }) => (
+        <div>
+          <label>{label}</label>
+          <div>
+            <input {...input} placeholder={label} type={type} className={className}/>
+            {touched && ((error && <span>{error}</span>) || (warning && <span>{warning}</span>))}
+          </div>
+        </div>
+    );
+
     renderError() {
-        if(this.props.errorMessage) {
+        if (this.props.errorMessage) {
             return (
                 <div className="alert alert-danger">
                     <string>Oops! {this.props.errorMessage}</string>
@@ -18,23 +28,32 @@ class Signin extends Component {
             );
         }
     }
-
+    
     render() {
-        const { handleSubmit } = this.props;
+        const { handleSubmit, submitting } = this.props;
 
         return (
             <form onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+                <h3>Sign In</h3>
                 <fieldset className="form-group">
-                    <label>Email:</label>
-                    <Field className="form-control" name="email" component={this.renderField} type="text" />
+                    <Field 
+                        className="form-control"
+                        name="email" 
+                        type="email" 
+                        component={this.renderField} 
+                        label="Email"/>
                 </fieldset>
                 <fieldset className="form-group">
-                    <label>Password:</label>
-                    <Field className="form-control" name="password" component={this.renderField} type="password" />
+                    <Field 
+                        className="form-control"
+                        name="password" 
+                        type="password" 
+                        component={this.renderField} 
+                        label="Password"/>
                 </fieldset>
                 {this.renderError()}
-                <button action="submit" className="btn btn-primary">Sign in</button>
-            </form>
+                <button type="submit" className="btn btn-primary" disabled={submitting}>Sign in</button>
+          </form>
         );
     }
 }
@@ -48,10 +67,12 @@ const validate = values => {
         errors.email = 'Invalid email address';
     }
 
-    if(!values.password) {
+    if (!values.password) {
         errors.password = 'Please enter a password';
     }
-}
+
+    return errors;
+};
 
 const mapStateToProps = (state) => {
     return { errorMessage: state.auth.error }
