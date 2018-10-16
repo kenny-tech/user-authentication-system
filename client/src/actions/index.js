@@ -15,19 +15,20 @@ export const signinUser = ({ email, password }) => {
         // submit email/password to the server
         axios.post(`${ROOT_URL}/signin`, { email, password })
             .then(response => {
+
                 // if request is good...
-                // update state to indicate user is authenticated
+                // - update state to indicate user is authenticated
                 dispatch({ type: AUTH_USER });
 
-                // save the jwt token
+                // - save the jwt token
                 localStorage.setItem('token', response.data.token);
 
-                // redirct to the route '/feature'
+                // - redirect to the route '/feature'
                 History.push('/feature');
             }).catch(() => {
                 // if request is bad...
-                // show an error to the user
-                dispatch(authError('Invalid Login Info'));
+                // - show an error to the user
+                dispatch(authError('Bad Login Info'));
             });
     };
 };
@@ -42,7 +43,7 @@ export const signupUser = ({ email, password }) => {
                 History.push('/feature');
             })
             .catch(err => {
-                dispatch(authError(err.response.error));
+                dispatch(authError(err.response.data.error));
             });
     };
 };
@@ -55,7 +56,7 @@ export const authError = (error) => {
 };
 
 export const signoutUser = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('token')
     return { type: UNAUTH_USER };
 };
 
@@ -68,7 +69,7 @@ export const fetchFeature = () => {
             dispatch({
                 type: FETCH_FEATURE,
                 payload: response.data
-            });
+             });
         });
     };
 };
