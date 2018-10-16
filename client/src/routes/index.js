@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import App from '../components/App';
-import RequireAuth from '../components/auth/require_auth';
+import RequireAuth from '../components/auth/Require_auth';
 import Signin from '../components/auth/Signin';
 import Signout from '../components/auth/Signout';
 import Signup from '../components/auth/Signup';
-import Feature from '../components/Welcome';
+import Feature from '../components/Feature';
 import Welcome from '../components/Welcome';
 
 const Routes = () => {

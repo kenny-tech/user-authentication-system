@@ -23,7 +23,7 @@ class Signup extends Component {
         if (this.props.errorMessage) {
             return (
                 <div className="alert alert-danger">
-                    <string>Oops! {this.props.errorMessage}</string>
+                    Oops! {this.props.errorMessage}
                 </div>
             );
         }
@@ -84,7 +84,7 @@ const validate = values => {
     }
 
     if (values.password !== values.passwordConfirmation) {
-        errors.password = 'Password must match';
+        errors.passwordConfirmation = 'Password must match';
     }
 
     return errors;

@@ -23,7 +23,7 @@ class Signin extends Component {
         if (this.props.errorMessage) {
             return (
                 <div className="alert alert-danger">
-                    <string>Oops! {this.props.errorMessage}</string>
+                    Oops! {this.props.errorMessage}
                 </div>
             );
         }

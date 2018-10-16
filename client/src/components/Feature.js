@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import * as actions from '../actions';
 
 class Feature extends Component {
-    
+
     componentWillMount() {
         this.props.fetchFeature();
     }
@@ -15,7 +16,7 @@ class Feature extends Component {
     }
 
     render() {
-        if(!this.props.features) {
+        if (!this.props.features) {
             return <div>Loading...</div>;
         }
 

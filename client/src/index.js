@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import reduxThunk from 'redux-thunk';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import History from './history';
 import Routes from './routes';
 import { AUTH_USER } from './actions/types';
@@ -37,12 +37,10 @@ if (token) {
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
-            <Route history={History}>
-                <Switch>
-                    <Routes />
-                </Switch>
-            </Route>
-        </BrowserRouter>
+        <Router history={History}>
+            <Switch>
+                <Routes />
+            </Switch>
+        </Router>
     </Provider>, document.getElementById('root'));
 registerServiceWorker();
