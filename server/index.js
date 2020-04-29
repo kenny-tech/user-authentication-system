@@ -9,9 +9,7 @@ const app = express();
 const router = require('./router');
 
 // db setup
-mongoose.connect('mongodb://localhost:27017/auth', {
-    useMongoClient: true,
-});
+mongoose.connect('mongodb://localhost:27017/auth');
 
 // app setup
 app.use(mporgan('dev'));
